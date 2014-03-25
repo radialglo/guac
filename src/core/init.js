@@ -1,0 +1,4 @@
+define([
+        "../core"
+], function(Guac) {
+});

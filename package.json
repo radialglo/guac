@@ -1,0 +1,18 @@
+{
+  "name": "guac",
+  "version": "0.0.1",
+  "author": "asu",
+  "private": true,
+  "devDependencies": {
+    "requirejs": "~2.1.10",
+    "load-grunt-tasks": "~0.3.0",
+    "grunt": "~0.4.4",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-jshint": "~0.6.5",
+    "grunt-contrib-uglify": "*",
+    "grunt-jsonlint": "*"
+  },
+  "scripts": {
+    "test": "grunt"
+  }
+}
