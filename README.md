@@ -3,6 +3,7 @@
     Please refer to here for an introduction to Markdown
     http://daringfireball.net/projects/markdown/
 -->
+[![Build Status](https://travis-ci.org/radialglo/guac.svg?branch=master)](https://travis-ci.org/radialglo/guac)
 Guac
 ====
 
