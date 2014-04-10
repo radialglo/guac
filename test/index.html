@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Example Mocha Test</title>
+    <link rel="stylesheet" href="css/mocha.css" type="text/css"/>
+</head>
+<body>
+    <!-- Required for browser reporter -->
+    <div id="mocha"></div>
+
+    <!-- mocha -->
+    <script src="../dist/guac.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="js/chai.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/mocha.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        // This will be overridden by mocha-helper if you run with grunt
+        var expect = chai.expect;
+        mocha.setup('bdd');
+    </script>
+    <script src="unit/core.js" type="text/javascript" charset="utf-8"></script>
+
+
+    -->
+    <script type="text/javascript" >
+        // If tests run in a real browser
+        // Can alternatively do a check on window.PHANTOMJS
+        if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+            mocha.run();
+        }
+    </script>
+</body>
+</html>
