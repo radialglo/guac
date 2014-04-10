@@ -10,9 +10,10 @@
     "grunt-contrib-watch": "*",
     "grunt-contrib-jshint": "~0.6.5",
     "grunt-contrib-uglify": "*",
-    "grunt-jsonlint": "*"
+    "grunt-jsonlint": "*",
+    "grunt-mocha": "~0.4.10"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "grunt mocha"
   }
 }

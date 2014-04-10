@@ -53,10 +53,24 @@ module.exports = function(grunt) {
                 ]
             }
         },
-        log: {
-            foo: [1, 2, 3],
-            bar: 'hello world',
-            baz: false
+
+
+        watch: {
+            scripts: {
+                files: ["src/*.js", "src/**/*.js", "test/unit/*.js"],
+                tasks: ["jshint"]
+            }
+        },
+
+        mocha: {
+            test: {
+                src: ['test/**/*.html'],
+                options: {
+                    reporter: 'Nyan',
+                    run: true,
+                    log: true
+                }
+            }
         }
 
     });

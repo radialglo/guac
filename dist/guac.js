@@ -4,7 +4,7 @@
  * @see https://github.com/radialglo/guac
  * /? /\ |) | /\ |_ (_, |_ () 
  *
- * Date: 2014-02-26
+ * Date: 2014-03-10
  */
 (function(window, undefined) {
 
@@ -25,6 +25,10 @@ var
     Guac.fn = Guac.prototype = {
     };
 
+
+    var init = Guac.fn.init = function(selector) {
+       this.target = document.querySelectorAll(selector);
+    };
 
 
 
