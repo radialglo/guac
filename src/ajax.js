@@ -14,7 +14,7 @@ define([
         var method = opts.method || "GET",
             xhr = new XMLHttpRequest(),
             onSuccess = opts.success,
-            onFail = opts.fail,
+            onError = opts.error,
             type;
 
         xhr.open(method, url);
@@ -31,7 +31,7 @@ define([
 
                         if (type.indexOf("xml") !== -1 && xhr.responseXML) {
                             // xml
-                            onSuccess(xhr.repsonseXML);
+                            onSuccess(xhr.responseXML);
 
                         } else if (type.indexOf("application/json" !== -1)) {
 
@@ -46,13 +46,16 @@ define([
                     }
 
                 } else {
-                    if (onFail) {
-                        onFail();
+                    if (onError) {
+                        onError();
                     }
                 }
             }
 
         };
+
+        // change
+        xhr.send("null");
 
     };
 

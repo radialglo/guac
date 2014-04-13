@@ -4,7 +4,7 @@
  * @see https://github.com/radialglo/guac
  * /? /\ |) | /\ |_ (_, |_ () 
  *
- * Date: 2014-03-10
+ * Date: 2014-03-12
  */
 (function(window, undefined) {
 
@@ -23,12 +23,41 @@ var
     };
 
     Guac.fn = Guac.prototype = {
+        constructor: Guac,
+        each: function(callback) {
+            Guac.each(this.target, callback);
+        }
+    };
+
+    Guac.isArray = Array.isArray;
+
+    Guac.each = function(obj, callback) {
+
+        var i,
+            isArray = Guac.isArray(obj);
+
+        if (isArray) {
+            obj.forEach(callback);
+        } else {
+
+            for (i in obj) {
+                callback.call(obj[i], i, obj[i]);
+            }
+        }
+
+        return obj;
     };
 
 
     var init = Guac.fn.init = function(selector) {
-       this.target = document.querySelectorAll(selector);
+
+       this.target = Array.prototype.slice.call(document.querySelectorAll(selector));
+       return this;
+
     };
+
+    // Give the init function the Guac prototype
+    init.prototype = Guac.fn;
 
 
 
@@ -44,7 +73,7 @@ var
         var method = opts.method || "GET",
             xhr = new XMLHttpRequest(),
             onSuccess = opts.success,
-            onFail = opts.fail,
+            onError = opts.error,
             type;
 
         xhr.open(method, url);
@@ -61,7 +90,7 @@ var
 
                         if (type.indexOf("xml") !== -1 && xhr.responseXML) {
                             // xml
-                            onSuccess(xhr.repsonseXML);
+                            onSuccess(xhr.responseXML);
 
                         } else if (type.indexOf("application/json" !== -1)) {
 
@@ -76,13 +105,16 @@ var
                     }
 
                 } else {
-                    if (onFail) {
-                        onFail();
+                    if (onError) {
+                        onError();
                     }
                 }
             }
 
         };
+
+        // change
+        xhr.send("null");
 
     };
 
@@ -109,6 +141,29 @@ var
         opts.method = "POST";
         Guac.ajax(url, opts);
     };
+
+
+    Guac.fn.addClass = function(value) {
+        this.each(function(el, i, arr) {
+            el.classList.add(value);
+        });
+    };
+
+    Guac.fn.removeClass = function(value) {
+
+        this.each(function(el, i, arr) {
+            el.classList.remove(value);
+        });
+    };
+
+    Guac.fn.hasClass = function(value) {
+
+    };
+
+    Guac.fn.toggleClass = function(value) {
+
+    };
+
 
     // Expose Guac object to the window
     if (typeof window === "object" && typeof window.document === "object") {

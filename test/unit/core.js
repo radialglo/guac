@@ -13,5 +13,5 @@ describe("core", function() {
 
         });
    });
-    
+
 });

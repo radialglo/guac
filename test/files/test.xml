@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<api>
+  <query>
+    <pages>
+      <page pageid="41603278" ns="0" title="Stack Overflow">
+        <extract xml:space="preserve">&lt;ul&gt;&lt;li&gt;This is a redirect from a page that has been &lt;b&gt;moved/renamed&lt;/b&gt;. This page was kept as a redirect to avoid breaking links that may have been made, both internally and externally, to the old article title. This template automatically tags any redirect that results from a page move. For more information, see the category.&lt;/li&gt;
+&lt;/ul&gt;</extract>
+      </page>
+    </pages>
+  </query>
+</api>

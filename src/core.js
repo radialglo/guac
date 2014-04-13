@@ -11,6 +11,29 @@ var
     };
 
     Guac.fn = Guac.prototype = {
+        constructor: Guac,
+        each: function(callback) {
+            Guac.each(this.target, callback);
+        }
+    };
+
+    Guac.isArray = Array.isArray;
+
+    Guac.each = function(obj, callback) {
+
+        var i,
+            isArray = Guac.isArray(obj);
+
+        if (isArray) {
+            obj.forEach(callback);
+        } else {
+
+            for (i in obj) {
+                callback.call(obj[i], i, obj[i]);
+            }
+        }
+
+        return obj;
     };
 
     return Guac;
