@@ -36,4 +36,10 @@ npm install -g grunt-cli
 ```
 The job of the Grunt CLI is simple: run the version of Grunt which has been installed next to a Gruntfile
 
+Testing
+------------------
+```
+grunt connect mocha
+```
+
 

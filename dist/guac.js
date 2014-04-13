@@ -4,7 +4,7 @@
  * @see https://github.com/radialglo/guac
  * /? /\ |) | /\ |_ (_, |_ () 
  *
- * Date: 2014-03-12
+ * Date: 2014-03-13
  */
 (function(window, undefined) {
 
@@ -26,6 +26,9 @@ var
         constructor: Guac,
         each: function(callback) {
             Guac.each(this.target, callback);
+        },
+        some: function(callback) {
+            Guac.some(this.target, callback);
         }
     };
 
@@ -41,11 +44,31 @@ var
         } else {
 
             for (i in obj) {
-                callback.call(obj[i], i, obj[i]);
+                callback.call(obj[i], obj[i], i, obj);
             }
         }
 
         return obj;
+    };
+
+    Guac.some = function(obj, callback) {
+
+        var i,
+            isArray = Guac.isArray(obj);
+
+        if (isArray) {
+            return obj.some(callback);
+        } else {
+
+            for (i in obj) {
+
+                if (callback.call(obj[i], obj[i], i)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     };
 
 
@@ -158,9 +181,23 @@ var
 
     Guac.fn.hasClass = function(value) {
 
+        var ret = this.some(function(el, i, arr) {
+            if (el.classList.contains(value)) {
+                return true;
+            }
+        });
+
+        return ret;
+
     };
 
     Guac.fn.toggleClass = function(value) {
+
+        if (this.hasClass(value)) {
+            this.removeClass(value);
+        } else {
+            this.addClass(value);
+        }
 
     };
 

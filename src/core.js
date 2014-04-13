@@ -14,6 +14,9 @@ var
         constructor: Guac,
         each: function(callback) {
             Guac.each(this.target, callback);
+        },
+        some: function(callback) {
+            Guac.some(this.target, callback);
         }
     };
 
@@ -29,11 +32,31 @@ var
         } else {
 
             for (i in obj) {
-                callback.call(obj[i], i, obj[i]);
+                callback.call(obj[i], obj[i], i, obj);
             }
         }
 
         return obj;
+    };
+
+    Guac.some = function(obj, callback) {
+
+        var i,
+            isArray = Guac.isArray(obj);
+
+        if (isArray) {
+            return obj.some(callback);
+        } else {
+
+            for (i in obj) {
+
+                if (callback.call(obj[i], obj[i], i)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     };
 
     return Guac;

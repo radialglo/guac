@@ -40,13 +40,21 @@ module.exports = function(grunt) {
                     "module": true,
                     "require": true,
                     "define": true,
-                    "console": true
+                    "console": true,
+
+                    "Guac": true,
+                    "$": true,
+                    "describe": true,
+                    "it": true,
+                    "expect": true,
+
                 }
             },
             all: {
                 src: [
                     "Gruntfile.js", 
                     "build/tasks/*",
+                    "test/unit/*.js",
                     "src/**/*.js",
                     "!src/start.js",
                     "!src/end.js"

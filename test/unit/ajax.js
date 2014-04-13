@@ -23,7 +23,7 @@ describe("ajax", function() {
             // check that documentElement does not equal html
             $.ajax("files/test.xml",{
                     success: function(doc) {
-                        expect(doc.documentElement.nodeName).to.not.equal("html", "should be xml document, so root element should not be html")
+                        expect(doc.documentElement.nodeName).to.not.equal("HTML", "should be xml document, so root element should not be html");
                         done(); 
                     },
                     error: function(){
@@ -74,7 +74,7 @@ describe("ajax", function() {
             // check that documentElement does not equal html
             $.get("files/test.xml",{
                     success: function(doc) {
-                        expect(doc.documentElement.nodeName).to.not.equal("html", "should be xml document, so root element should not be html")
+                        expect(doc.documentElement.nodeName).to.not.equal("HTML", "should be xml document, so root element should not be html");
                         done(); 
                     },
                     error: function(){
@@ -125,7 +125,7 @@ describe("ajax", function() {
             // check that documentElement does not equal html
             $.post("files/test.xml",{
                     success: function(doc) {
-                        expect(doc.documentElement.nodeName).to.not.equal("html", "should be xml document, so root element should not be html")
+                        expect(doc.documentElement.nodeName).to.not.equal("HTML", "should be xml document, so root element should not be html");
                         done(); 
                     },
                     error: function(){
