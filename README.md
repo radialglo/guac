@@ -38,8 +38,6 @@ The job of the Grunt CLI is simple: run the version of Grunt which has been inst
 
 Testing
 ------------------
-```
-grunt connect mocha
-```
+```grunt connect mocha``` or ```npm test``` at top level directory
 
 

@@ -16,7 +16,7 @@ var
             Guac.each(this.target, callback);
         },
         some: function(callback) {
-            Guac.some(this.target, callback);
+            return Guac.some(this.target, callback);
         }
     };
 

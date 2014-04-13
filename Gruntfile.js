@@ -44,9 +44,12 @@ module.exports = function(grunt) {
 
                     "Guac": true,
                     "$": true,
+
                     "describe": true,
                     "it": true,
                     "expect": true,
+                    "beforeEach": true,
+                    "afterEach": true
 
                 }
             },
