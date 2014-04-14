@@ -1,6 +1,7 @@
 define([
-        "./core/init",
         "./core",
+        "./core/init",
+        "./core/ready",
         "./events",
         "./ajax",
         "./attributes",

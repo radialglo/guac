@@ -25,6 +25,18 @@ var
 
     Guac.isArray = Array.isArray;
 
+    Guac.type = function(o) {
+        return typeof o;
+    };
+
+    Guac.isString = function(o) {
+        return Guac.type(o) === "string";
+    };
+
+    Guac.isFunction = function(o) {
+        return Guac.type(o) === "function";
+    };
+
     Guac.each = function(obj, callback) {
 
         var i,

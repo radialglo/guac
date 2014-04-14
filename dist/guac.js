@@ -37,6 +37,18 @@ var
 
     Guac.isArray = Array.isArray;
 
+    Guac.type = function(o) {
+        return typeof o;
+    };
+
+    Guac.isString = function(o) {
+        return Guac.type(o) === "string";
+    };
+
+    Guac.isFunction = function(o) {
+        return Guac.type(o) === "function";
+    };
+
     Guac.each = function(obj, callback) {
 
         var i,
@@ -77,13 +89,30 @@ var
 
     var init = Guac.fn.init = function(selector) {
 
-       this.target = Array.prototype.slice.call(document.querySelectorAll(selector));
-       return this;
+        // handle $("selector")
+        if (Guac.isString(selector)) {
+
+            this.target = Array.prototype.slice.call(document.querySelectorAll(selector));
+
+        // handle $(function)
+        } else if (Guac.isFunction(selector)) {
+
+            Guac.ready(selector);
+
+        }
+
+        return this;
 
     };
 
     // Give the init function the Guac prototype
     init.prototype = Guac.fn;
+
+
+
+    Guac.ready = function(fn) {
+        window.addEventListener("load", fn);
+    };
 
 
 

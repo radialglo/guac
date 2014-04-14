@@ -14,6 +14,33 @@ describe("core", function() {
         });
    });
 
+   describe("#type()", function() {
+
+        it("it should be a function", function() {
+
+            expect(Guac.type(function(){})).to.be.equal("function");
+
+        });
+   });
+
+   describe("#isFunction()", function() {
+
+        it("it should be a function", function() {
+
+            expect(Guac.isFunction(function(){})).to.be.equal(true);
+
+        });
+   });
+
+   describe("#isString()", function() {
+
+        it("it should be string", function() {
+
+            expect(Guac.isString("string")).to.be.equal(true);
+
+        });
+   });
+
    describe("#each()", function() {
 
         var div = $("#mocha"),
@@ -114,6 +141,24 @@ describe("core", function() {
             });
 
             expect(ret).to.equal(false);
+
+        });
+   });
+   describe("#ready", function() {
+
+        it("should load when ready", function(done) {
+
+            var event;
+
+            $(function() {
+                done();
+            });
+
+            event = document.createEvent('Event');
+                            // bubbles, cancelable
+            event.initEvent('load', true, true);
+
+            window.dispatchEvent(event);
 
         });
    });

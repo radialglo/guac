@@ -4,8 +4,19 @@ define([
 
     var init = Guac.fn.init = function(selector) {
 
-       this.target = Array.prototype.slice.call(document.querySelectorAll(selector));
-       return this;
+        // handle $("selector")
+        if (Guac.isString(selector)) {
+
+            this.target = Array.prototype.slice.call(document.querySelectorAll(selector));
+
+        // handle $(function)
+        } else if (Guac.isFunction(selector)) {
+
+            Guac.ready(selector);
+
+        }
+
+        return this;
 
     };
 
