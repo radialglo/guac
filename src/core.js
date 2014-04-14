@@ -10,10 +10,13 @@ var
         return new Guac.fn.init(selector);
     };
 
+    // global tracker for objects
+    Guac.guid = 1;
+
     Guac.fn = Guac.prototype = {
         constructor: Guac,
         each: function(callback) {
-            Guac.each(this.target, callback);
+            return Guac.each(this.target, callback);
         },
         some: function(callback) {
             return Guac.some(this.target, callback);

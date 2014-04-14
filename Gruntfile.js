@@ -45,12 +45,12 @@ module.exports = function(grunt) {
                     "Guac": true,
                     "$": true,
 
+                    // mocha globals
                     "describe": true,
                     "it": true,
                     "expect": true,
                     "beforeEach": true,
                     "afterEach": true
-
                 }
             },
             all: {

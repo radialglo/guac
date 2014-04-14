@@ -19,12 +19,24 @@ describe("core", function() {
         var div = $("#mocha"),
             target = null;
 
+        it("should return same object", function() {
+
+            var testArr = [6, 8, 4, 3],
+                ret = Guac.each(testArr, function() {
+                });
+
+            expect(ret).to.equal(testArr);
+        });
+
         it("should update all elements in array", function() {
 
-            var testArr = [6, 8, 4, 3];
-            Guac.each(testArr, function(el, i, arr) {
-                 arr[i] *= 2;
-            });
+            var testArr = [6, 8, 4, 3],
+                ret = Guac.each(testArr, function(el, i, arr) {
+                    arr[i] *= 2;
+                });
+
+            // should return same object
+            expect(ret).to.equal(testArr);
 
             expect(testArr[0]).to.equal(12);
             expect(testArr[1]).to.equal(16);
