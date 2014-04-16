@@ -4,7 +4,7 @@
  * @see https://github.com/radialglo/guac
  * /? /\ |) | /\ |_ (_, |_ () 
  *
- * Date: 2014-03-13
+ * Date: 2014-03-15
  */
 (function(window, undefined) {
 
@@ -99,6 +99,11 @@ var
 
             Guac.ready(selector);
 
+        // handle $(DOMElement)
+        } else if (selector.nodeType) {
+            this.target = [selector];
+        } else {
+            this.target = [selector];
         }
 
         return this;
@@ -261,7 +266,7 @@ var
 
         };
 
-        // change
+        // TODO: change
         xhr.send("null");
 
     };

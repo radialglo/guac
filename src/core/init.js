@@ -14,6 +14,11 @@ define([
 
             Guac.ready(selector);
 
+        // handle $(DOMElement)
+        } else if (selector.nodeType) {
+            this.target = [selector];
+        } else {
+            this.target = [selector];
         }
 
         return this;

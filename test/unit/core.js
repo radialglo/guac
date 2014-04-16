@@ -5,11 +5,30 @@ describe("core", function() {
         var div = $("#mocha"),
             target = null;
 
-        it("should query DOM Element", function() {
+        it("should query selector", function() {
 
             target = Array.prototype.slice.call(div.target)[0];
             expect(target.tagName).to.be.equal("DIV");
             expect(target.id).to.be.equal("mocha");
+
+        });
+
+        it("should query DOM Element", function() {
+
+            div = $(document.getElementById("mocha"));
+
+            target = Array.prototype.slice.call(div.target)[0];
+            expect(target.tagName).to.be.equal("DIV");
+            expect(target.id).to.be.equal("mocha");
+
+        });
+
+        it("should query window Object", function() {
+
+            div = $(window);
+
+            target = Array.prototype.slice.call(div.target)[0];
+            expect(target).to.be.equal(window);
 
         });
    });
