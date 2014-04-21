@@ -33,7 +33,7 @@ define([
                             // xml
                             onSuccess(xhr.responseXML);
 
-                        } else if (type.indexOf("application/json" !== -1)) {
+                        } else if (type.indexOf("application/json") !== -1) {
 
                             // json
                             onSuccess(JSON.parse(xhr.responseText));

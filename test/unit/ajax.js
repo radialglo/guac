@@ -34,6 +34,25 @@ describe("ajax", function() {
 
         });
 
+        it("should fetch html", function(done) {
+
+            // check that documentElement is equal html
+            $.ajax("files/test.html",{
+                    success: function(data) {
+                        var parser = new DOMParser();
+                        // parser does not support text/html, so let's parse html using xml type
+                        var doc = parser.parseFromString(data, "text/xml");
+                        expect(doc.documentElement.nodeName).to.equal("html", "should be html");
+                        done(); 
+                    },
+                    error: function(){
+                        expect(true).to.equal(false);
+                        done();
+                    }
+            });
+
+        });
+
         it("should send error", function(done) {
 
             $.ajax("files/does-not-exist.xml",{
@@ -75,6 +94,25 @@ describe("ajax", function() {
             $.get("files/test.xml",{
                     success: function(doc) {
                         expect(doc.documentElement.nodeName).to.not.equal("HTML", "should be xml document, so root element should not be html");
+                        done(); 
+                    },
+                    error: function(){
+                        expect(true).to.equal(false);
+                        done();
+                    }
+            });
+
+        });
+
+        it("should use GET to fetch html", function(done) {
+
+            // check that documentElement is equal html
+            $.get("files/test.html",{
+                    success: function(data) {
+                        var parser = new DOMParser();
+                        // parser does not support text/html, so let's parse html using xml type
+                        var doc = parser.parseFromString(data, "text/xml");
+                        expect(doc.documentElement.nodeName).to.equal("html", "should be html");
                         done(); 
                     },
                     error: function(){
@@ -135,6 +173,26 @@ describe("ajax", function() {
             });
 
         });
+
+        it("should use POST to fetch html", function(done) {
+
+            // check that documentElement is equal html
+            $.post("files/test.html",{
+                    success: function(data) {
+                        var parser = new DOMParser();
+                        // parser does not support text/html, so let's parse html using xml type
+                        var doc = parser.parseFromString(data, "text/xml");
+                        expect(doc.documentElement.nodeName).to.equal("html", "should be html");
+                        done(); 
+                    },
+                    error: function(){
+                        expect(true).to.equal(false);
+                        done();
+                    }
+            });
+
+        });
+
 
         it("should send error", function(done) {
 

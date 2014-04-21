@@ -4,7 +4,7 @@
  * @see https://github.com/radialglo/guac
  * /? /\ |) | /\ |_ (_, |_ () 
  *
- * Date: 2014-03-15
+ * Date: 2014-03-20
  */
 (function(window, undefined) {
 
@@ -245,7 +245,7 @@ var
                             // xml
                             onSuccess(xhr.responseXML);
 
-                        } else if (type.indexOf("application/json" !== -1)) {
+                        } else if (type.indexOf("application/json") !== -1) {
 
                             // json
                             onSuccess(JSON.parse(xhr.responseText));
