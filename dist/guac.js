@@ -4,7 +4,7 @@
  * @see https://github.com/radialglo/guac
  * /? /\ |) | /\ |_ (_, |_ () 
  *
- * Date: 2014-03-20
+ * Date: 2014-03-29
  */
 (function(window, undefined) {
 
@@ -296,9 +296,14 @@ var
     };
 
 
-    Guac.fn.addClass = function(value) {
+    /**
+     * @method addClass
+     *
+     */
+    Guac.fn.addClass = function() {
+        var args =  arguments;
         this.each(function(el, i, arr) {
-            el.classList.add(value);
+            el.classList.add.apply(el.classList, args);
         });
     };
 

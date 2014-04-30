@@ -2,9 +2,16 @@ define([
     "../core"
 ], function(Guac) {
 
-    Guac.fn.addClass = function(value) {
+    /**
+     * @method addClass
+     * @param {String} className(s)
+     * @desc adds one or more classes to element
+     *
+     */
+    Guac.fn.addClass = function() {
+        var args =  arguments;
         this.each(function(el, i, arr) {
-            el.classList.add(value);
+            el.classList.add.apply(el.classList, args);
         });
     };
 

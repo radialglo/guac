@@ -6,7 +6,8 @@ describe("attributes", function() {
             body = doc.body,
             divOne = null,
             divTwo = null,
-            divClass = "awesome";
+            divClass = "awesome",
+            divClassTwo = "woot";
 
         beforeEach(function(done) {
             var frag = document.createDocumentFragment();
@@ -35,6 +36,17 @@ describe("attributes", function() {
                 $("div").addClass(divClass);
                 expect(divOne.className).to.equal(divClass);
                 expect(divTwo.className).to.equal(divClass);
+            });
+
+            it("should add multiple classes", function() {
+
+                // this invocation doesn't work for phantomjs but is okay in browser
+                // $("div").addClass(divClass, divClassTwo);
+                $("div").addClass(divClass);
+                $("div").addClass(divClassTwo);
+                expect(divOne.classList.length).to.equal(2);
+                expect(divOne.classList.contains(divClass)).to.equal(true);
+                expect(divOne.classList.contains(divClassTwo)).to.equal(true);
             });
 
         });
