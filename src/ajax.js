@@ -15,9 +15,32 @@ define([
             xhr = new XMLHttpRequest(),
             onSuccess = opts.success,
             onError = opts.error,
-            type;
+            data = opts.data,
+            body = null,
+            key,
+            type,
+            hasContent = method !== "GET";
+
+        if (data) {
+            body = [];
+            for (key in data) {
+                body.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
+            }
+            body.join("&");
+
+            if (!hasContent) {
+                url += "?" + body;
+                body = null;
+            }
+
+        }
 
         xhr.open(method, url);
+
+        // set content type header for requests that have body i.e POST 
+        if (hasContent) {
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        }
 
         xhr.onreadystatechange = function() {
 
@@ -54,8 +77,7 @@ define([
 
         };
 
-        // TODO: change
-        xhr.send("null");
+        xhr.send(body);
 
     };
 

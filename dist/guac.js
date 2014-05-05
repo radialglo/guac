@@ -4,12 +4,11 @@
  * @see https://github.com/radialglo/guac
  * /? /\ |) | /\ |_ (_, |_ () 
  *
- * Date: 2014-03-29
+ * Date: 2014-04-05
  */
 (function(window, undefined) {
 
     "use strict";
-
 
 var
     // Use the correct document accordingly with window argument (sandbox)
@@ -227,9 +226,32 @@ var
             xhr = new XMLHttpRequest(),
             onSuccess = opts.success,
             onError = opts.error,
-            type;
+            data = opts.data,
+            body = null,
+            key,
+            type,
+            hasContent = method !== "GET";
+
+        if (data) {
+            body = [];
+            for (key in data) {
+                body.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
+            }
+            body.join("&");
+
+            if (!hasContent) {
+                url += "?" + body;
+                body = null;
+            }
+
+        }
 
         xhr.open(method, url);
+
+        // set content type header for requests that have body i.e POST 
+        if (hasContent) {
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        }
 
         xhr.onreadystatechange = function() {
 
@@ -267,7 +289,8 @@ var
         };
 
         // TODO: change
-        xhr.send("null");
+        // console.log(body);
+        xhr.send(body);
 
     };
 
@@ -298,6 +321,8 @@ var
 
     /**
      * @method addClass
+     * @param {String} className(s)
+     * @desc adds one or more classes to element
      *
      */
     Guac.fn.addClass = function() {
@@ -345,5 +370,6 @@ var
 
 
 return Guac;
+
 
 })(this);
