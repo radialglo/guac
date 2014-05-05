@@ -288,8 +288,6 @@ var
 
         };
 
-        // TODO: change
-        // console.log(body);
         xhr.send(body);
 
     };
