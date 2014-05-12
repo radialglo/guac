@@ -5,6 +5,7 @@ define([
         "./events",
         "./ajax",
         "./attributes",
+        "./mediator",
         "./exports/global",
 ],function(Guac) {
 

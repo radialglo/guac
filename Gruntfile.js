@@ -83,6 +83,21 @@ module.exports = function(grunt) {
             }
         },
 
+        uglify: {
+            options: {
+                banner: '/* Guac | /? /\\ |) | /\\ |_ (_, |_ () <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            build: {
+                files: [{
+                    expand: true,
+                    cwd: 'dist/',
+                    src: ['*.js', '!*min.js'], // don't minify min files
+                    dest: 'dist/',
+                    ext: '.min.js'
+                }]
+            }
+        },
+
         mocha: {
             test: {
                 options: {
@@ -152,5 +167,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask("dev", ["build:*:*"]);
     // Default grunt
-    grunt.registerTask("default", ["jsonlint", "jshint", "dev"]);
+    grunt.registerTask("default", ["jsonlint", "jshint", "dev", "uglify"]);
 };
