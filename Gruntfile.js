@@ -107,59 +107,67 @@ module.exports = function(grunt) {
                     urls: [ 'http://localhost:8888/test/index.html' ]
                 }
             }
-        }
+        },
+      connect: {
+        server: {
+          options: {
+            port: 8888,
+            base: ".",
+            middleware:[
+                // since we're overriding middleware
+                // now we need to manually expose the static directory
+                connect.static("."),
+                connect.bodyParser(),
+                function(req, res, next) {
 
-    });
+                    // console.log(req.body);
+                    // console.log(req._parsedUrl.pathname);
+                    // console.log(req.url);
+                    var requestPath = req._parsedUrl.pathname;
+                    // parse query params for GET Request
+                    var url_parts = url.parse(req.url, true);
+                    var query = url_parts.query;
 
-    grunt.registerTask('connect', 'Custom static web server', function() {
-        // use current directory as static
-        connect(connect.static("."))
-        // use body parser http://www.senchalabs.org/connect/bodyParser.html
-        .use(connect.bodyParser())
-        .use(function(req, res, next) {
+                    if (isEmptyObject(req.body)) {
+                        req.body = url_parts.query;
+                    }
+                    if (requestPath === "/test/read" || req.method === "POST") {
 
-            // console.log(req.body);
-            // console.log(req._parsedUrl.pathname);
-            // console.log(req.url);
-            var requestPath = req._parsedUrl.pathname;
-            // parse query params for GET Request
-            var url_parts = url.parse(req.url, true);
-            var query = url_parts.query;
+                        var path = (requestPath === "/test/read") ? "." + req.body.filename : "." + req.url,
+                            data = grunt.file.exists(path) ? grunt.file.read(path) : false,
+                            type,
+                            statusCode = 404;
 
-            if (isEmptyObject(req.body)) {
-                req.body = url_parts.query;
-            }
-            if (requestPath === "/test/read" || req.method === "POST") {
+                        if (data) {
 
-                var path = (requestPath === "/test/read") ? "." + req.body.filename : "." + req.url,
-                    data = grunt.file.exists(path) ? grunt.file.read(path) : false,
-                    type,
-                    statusCode = 404;
+                            if (path.indexOf("json") !== -1) {
+                                type = "application/json";
+                            } else if (path.indexOf("xml") !== -1) {
+                                type = "application/xml";
+                            } else {
+                                type = "text/html";
+                            }
 
-                if (data) {
+                            if (type) {
+                                res.setHeader ("Content-Type", type);
+                            }
+                            statusCode = 200;
+                        }
 
-                    if (path.indexOf("json") !== -1) {
-                        type = "application/json";
-                    } else if (path.indexOf("xml") !== -1) {
-                        type = "application/xml";
+                        res.statusCode = statusCode;
+                        res.end(data);
+
                     } else {
-                        type = "text/html";
+                        return next();
                     }
-
-                    if (type) {
-                        res.setHeader ("Content-Type", type);
-                    }
-                    statusCode = 200;
                 }
+            ]
+          }
+        }
+      }
 
-                res.statusCode = statusCode;
-                res.end(data);
-
-            } else {
-                return next();
-            }
-        }).listen(8888);
     });
+   
     grunt.loadTasks( "build/tasks");
 
     // Load grunt tasks from NPM packages

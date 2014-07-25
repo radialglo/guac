@@ -4,7 +4,7 @@
  * @see https://github.com/radialglo/guac
  * /? /\ |) | /\ |_ (_, |_ () 
  *
- * Date: 2014-04-11
+ * Date: 2014-06-24
  */
 (function(window, undefined) {
 

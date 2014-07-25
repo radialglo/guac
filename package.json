@@ -12,7 +12,8 @@
     "grunt-contrib-uglify": "*",
     "grunt-jsonlint": "*",
     "grunt-mocha": "~0.4.10",
-    "connect": "~2.15.0"
+    "connect": "~2.15.0",
+    "grunt-contrib-connect": "*"
   },
   "scripts": {
     "test": "grunt connect mocha"

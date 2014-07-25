@@ -40,4 +40,5 @@ Testing
 ------------------
 ```grunt connect mocha``` or ```npm test``` at top level directory
 
-
+To keep the server live indefinitely and view static files run
+```grunt connect:server:keepalive```
